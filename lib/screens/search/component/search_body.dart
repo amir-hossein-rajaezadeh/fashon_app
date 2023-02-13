@@ -20,7 +20,7 @@ class SearchBody extends ConsumerWidget {
       viewModel.isFirstTry = false;
       itemSearchList = mainList;
     }
-    
+  
     return GestureDetector(
       onTap: () => {FocusManager.instance.primaryFocus?.unfocus()},
       child: Column(

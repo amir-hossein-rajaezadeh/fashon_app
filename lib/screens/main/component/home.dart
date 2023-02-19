@@ -1,9 +1,10 @@
 import 'package:animate_do/animate_do.dart';
+import 'package:fashon_app/screens/detail/detail_page.dart';
 import 'package:flutter/material.dart';
 import 'package:fashon_app/data/app_data.dart';
- import 'package:fashon_app/model/categories_model.dart';
+import 'package:fashon_app/model/categories_model.dart';
 import 'package:fashon_app/utils/constants.dart';
- 
+
 import '../../../base/base_view_model.dart';
 
 class Home extends StatefulWidget {
@@ -163,51 +164,63 @@ class _HomeState extends State<Home> {
                         itemCount: mainList.length,
                         itemBuilder: (ctx, index) {
                           BaseViewModelOffline current = mainList[index];
-                          return Column(
-                            children: [
-                              Container(
-                                width: size.width * 0.5,
-                                height: size.height * 0.3,
-                                margin: const EdgeInsets.all(10),
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(3),
-                                  image: DecorationImage(
-                                    image: AssetImage(current.imageUrl),
-                                    fit: BoxFit.cover,
+                          return InkWell(
+                            onTap: () {
+                              Navigator.pushNamed(
+                                context,
+                                "/detail",
+                                arguments: DetailArguments(current, true),
+                              );
+                            },
+                            child: Column(
+                              children: [
+                                Hero(
+                                  tag: current.imageUrl,
+                                  child: Container(
+                                    width: size.width * 0.5,
+                                    height: size.height * 0.3,
+                                    margin: const EdgeInsets.all(10),
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(3),
+                                      image: DecorationImage(
+                                        image: AssetImage(current.imageUrl),
+                                        fit: BoxFit.cover,
+                                      ),
+                                      boxShadow: const [
+                                        BoxShadow(
+                                          offset: Offset(0, 4),
+                                          blurRadius: 4,
+                                          color: Color.fromARGB(61, 0, 0, 0),
+                                        )
+                                      ],
+                                    ),
                                   ),
-                                  boxShadow: const [
-                                    BoxShadow(
-                                      offset: Offset(0, 4),
-                                      blurRadius: 4,
-                                      color: Color.fromARGB(61, 0, 0, 0),
-                                    )
-                                  ],
                                 ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(top: 2),
-                                child: Text(
-                                  current.name,
-                                  style: theme.headline2,
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 2),
+                                  child: Text(
+                                    current.name,
+                                    style: theme.headline2,
+                                  ),
                                 ),
-                              ),
-                              RichText(
-                                  text: TextSpan(
-                                      text: "€",
-                                      style: theme.subtitle2?.copyWith(
-                                        color: primaryColor,
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                      children: [
-                                    TextSpan(
-                                      text: current.price.toString(),
-                                      style: theme.subtitle2?.copyWith(
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    )
-                                  ])),
-                            ],
+                                RichText(
+                                    text: TextSpan(
+                                        text: "€",
+                                        style: theme.subtitle2?.copyWith(
+                                          color: primaryColor,
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                        children: [
+                                      TextSpan(
+                                        text: current.price.toString(),
+                                        style: theme.subtitle2?.copyWith(
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      )
+                                    ])),
+                              ],
+                            ),
                           );
                         }),
                   ),
@@ -238,47 +251,59 @@ class _HomeState extends State<Home> {
         });
   }
 
-  Padding _buildCard(
-      Size size, BaseViewModelOffline data, TextTheme theme, BuildContext context) {
+  Padding _buildCard(Size size, BaseViewModelOffline data, TextTheme theme,
+      BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(top: 15),
-      child: Column(
-        children: [
-          Container(
-            width: size.width * 0.6,
-            height: size.height * 0.35,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(3),
-              image: DecorationImage(
-                  image: AssetImage(data.imageUrl), fit: BoxFit.cover),
+      child: InkWell(
+        onTap: () {
+          Navigator.pushNamed(
+            context,
+            "/detail",
+            arguments: DetailArguments(data, false),
+          );
+        },
+        child: Column(
+          children: [
+            Hero(
+              tag: data.id,
+              child: Container(
+                width: size.width * 0.6,
+                height: size.height * 0.35,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(3),
+                  image: DecorationImage(
+                      image: AssetImage(data.imageUrl), fit: BoxFit.cover),
+                ),
+              ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 10),
-            child: Text(
-              data.name,
-              style: theme.headline2,
+            Padding(
+              padding: const EdgeInsets.only(top: 10),
+              child: Text(
+                data.name,
+                style: theme.headline2,
+              ),
             ),
-          ),
-          RichText(
-            text: TextSpan(
-              text: "s",
-              style: theme.subtitle2?.copyWith(
-                  fontSize: 26,
-                  fontWeight: FontWeight.bold,
-                  color: primaryColor),
-              children: [
-                TextSpan(
-                  text: data.price.toString(),
-                  style: Theme.of(context)
-                      .textTheme
-                      .subtitle1
-                      ?.copyWith(fontSize: 25, fontWeight: FontWeight.w600),
-                )
-              ],
+            RichText(
+              text: TextSpan(
+                text: "s",
+                style: theme.subtitle2?.copyWith(
+                    fontSize: 26,
+                    fontWeight: FontWeight.bold,
+                    color: primaryColor),
+                children: [
+                  TextSpan(
+                    text: data.price.toString(),
+                    style: Theme.of(context)
+                        .textTheme
+                        .subtitle1
+                        ?.copyWith(fontSize: 25, fontWeight: FontWeight.w600),
+                  )
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

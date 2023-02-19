@@ -1,3 +1,4 @@
+import 'package:fashon_app/utils/rout.dart';
 import 'package:flutter/material.dart';
 import 'package:fashon_app/utils/app_theme.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -19,7 +20,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: AppTheme.appTheme,
+      initialRoute: '/',
       home: const MainWrapper(),
+      routes: AppRout.routes,
     );
   }
 }

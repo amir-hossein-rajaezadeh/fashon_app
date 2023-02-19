@@ -157,72 +157,74 @@ class _HomeState extends State<Home> {
                     width: size.width,
                     height: size.height * 0.44,
                     child: GridView.builder(
-                        physics: const BouncingScrollPhysics(),
-                        gridDelegate:
-                            const SliverGridDelegateWithFixedCrossAxisCount(
-                                crossAxisCount: 2, childAspectRatio: 0.63),
-                        itemCount: mainList.length,
-                        itemBuilder: (ctx, index) {
-                          BaseViewModelOffline current = mainList[index];
-                          return InkWell(
-                            onTap: () {
-                              Navigator.pushNamed(
-                                context,
-                                "/detail",
-                                arguments: DetailArguments(current, true),
-                              );
-                            },
-                            child: Column(
-                              children: [
-                                Hero(
-                                  tag: current.imageUrl,
-                                  child: Container(
-                                    width: size.width * 0.5,
-                                    height: size.height * 0.3,
-                                    margin: const EdgeInsets.all(10),
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(3),
-                                      image: DecorationImage(
-                                        image: AssetImage(current.imageUrl),
-                                        fit: BoxFit.cover,
-                                      ),
-                                      boxShadow: const [
-                                        BoxShadow(
-                                          offset: Offset(0, 4),
-                                          blurRadius: 4,
-                                          color: Color.fromARGB(61, 0, 0, 0),
-                                        )
-                                      ],
+                      physics: const BouncingScrollPhysics(),
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 2, childAspectRatio: 0.63),
+                      itemCount: mainList.length,
+                      itemBuilder: (ctx, index) {
+                        BaseViewModelOffline current = mainList[index];
+                        return InkWell(
+                          onTap: () {
+                            Navigator.pushNamed(
+                              context,
+                              "/detail",
+                              arguments: DetailArguments(current, true),
+                            );
+                          },
+                          child: Column(
+                            children: [
+                              Hero(
+                                tag: current.imageUrl,
+                                child: Container(
+                                  width: size.width * 0.5,
+                                  height: size.height * 0.3,
+                                  margin: const EdgeInsets.all(10),
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(3),
+                                    image: DecorationImage(
+                                      image: AssetImage(current.imageUrl),
+                                      fit: BoxFit.cover,
                                     ),
+                                    boxShadow: const [
+                                      BoxShadow(
+                                        offset: Offset(0, 4),
+                                        blurRadius: 4,
+                                        color: Color.fromARGB(61, 0, 0, 0),
+                                      )
+                                    ],
                                   ),
                                 ),
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 2),
-                                  child: Text(
-                                    current.name,
-                                    style: theme.headline2,
-                                  ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(top: 2),
+                                child: Text(
+                                  current.name,
+                                  style: theme.headline2,
                                 ),
-                                RichText(
-                                    text: TextSpan(
-                                        text: "€",
-                                        style: theme.subtitle2?.copyWith(
-                                          color: primaryColor,
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                        children: [
+                              ),
+                              RichText(
+                                text: TextSpan(
+                                    text: "€",
+                                    style: theme.subtitle2?.copyWith(
+                                      color: primaryColor,
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                    children: [
                                       TextSpan(
                                         text: current.price.toString(),
                                         style: theme.subtitle2?.copyWith(
                                           fontWeight: FontWeight.bold,
                                         ),
                                       )
-                                    ])),
-                              ],
-                            ),
-                          );
-                        }),
+                                    ]),
+                              ),
+                            ],
+                          ),
+                        );
+                      },
+                    ),
                   ),
                 )
               ],

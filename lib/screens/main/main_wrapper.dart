@@ -106,7 +106,9 @@ class MainWrapper extends ConsumerWidget {
             ),
           ),
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pushNamed(context, "/cartList");
+            },
             icon: const Icon(
               LineIcons.shoppingBag,
               color: Colors.black,

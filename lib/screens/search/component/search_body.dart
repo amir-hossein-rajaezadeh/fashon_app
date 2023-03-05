@@ -2,7 +2,6 @@ import 'package:animate_do/animate_do.dart';
 import 'package:fashon_app/screens/detail/detail_page.dart';
 import 'package:flutter/material.dart';
 import 'package:fashon_app/screens/search/view_model/search_view_model.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:line_icons/line_icons.dart';
 import '../../../base/base_view_model.dart';

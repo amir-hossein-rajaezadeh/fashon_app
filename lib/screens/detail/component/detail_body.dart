@@ -222,7 +222,7 @@ class DetailBody extends ConsumerWidget {
                     text: "Add to cart",
                     size: size,
                     onTap: () {
-                      Navigator.pushNamed(context, "/cartList");
+                      viewModel.addItemToCarrtList(data, context, true, 0);
                     },
                   ),
                 ),

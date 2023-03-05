@@ -107,3 +107,4 @@ List<BaseViewModelOffline> mainList = [
 ];
 
 List<BaseViewModelOffline> itemSearchList=[];
+List<BaseViewModelOffline> itemOnCart=[];

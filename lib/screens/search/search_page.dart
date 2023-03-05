@@ -7,8 +7,10 @@ class SearchPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return SafeArea(child: Scaffold(
-      body: SearchBody(),
-    ),);
+    return const SafeArea(
+      child: Scaffold(
+        body: SearchBody(),
+      ),
+    );
   }
 }

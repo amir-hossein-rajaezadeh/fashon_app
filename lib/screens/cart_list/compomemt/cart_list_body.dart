@@ -202,7 +202,9 @@ class CartListBody extends ConsumerWidget {
                                         ],
                                       ),
                                       IconButton(
-                                        onPressed: () {},
+                                        onPressed: () {
+                                          viewModel.deleteItem(current);
+                                        },
                                         icon: const Icon(
                                           Icons.close,
                                           color: Colors.grey,
@@ -232,12 +234,23 @@ class CartListBody extends ConsumerWidget {
                         height: size.height * 0.01,
                       ),
                       FadeInUp(
-                          delay: const Duration(milliseconds: 250),
-                          child: const Text(
-                            "Your cart is empty right now :(",
-                            style: TextStyle(
-                                fontWeight: FontWeight.w400, fontSize: 16),
-                          ))
+                        delay: const Duration(milliseconds: 250),
+                        child: const Text(
+                          "Your cart is empty right now :(",
+                          style: TextStyle(
+                              fontWeight: FontWeight.w400, fontSize: 16),
+                        ),
+                      ),
+                      FadeInUp(
+                        delay: const Duration(milliseconds: 300),
+                        child: IconButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                            Navigator.pop(context);
+                          },
+                          icon: const Icon(Icons.shopping_bag_outlined),
+                        ),
+                      )
                     ],
                   ),
           ),
@@ -273,14 +286,15 @@ class CartListBody extends ConsumerWidget {
                         duration: const Duration(
                           milliseconds: 400,
                         ),
-                        child: const ReusbleCareForRow(
-                            price: 140, text: "Sub Total")),
+                        child: ReusbleCareForRow(
+                            price: viewModel.calculateSubTotal().toDouble(),
+                            text: "Sub Total")),
                     FadeInUp(
                       duration: const Duration(
                         milliseconds: 450,
                       ),
-                      child:
-                          const ReusbleCareForRow(price: 150, text: "Shipping"),
+                      child: ReusbleCareForRow(
+                          price: viewModel.doShipping(), text: "Shipping"),
                     ),
                     const Padding(
                       padding: EdgeInsets.symmetric(vertical: 10.0),
@@ -290,7 +304,8 @@ class CartListBody extends ConsumerWidget {
                       duration: const Duration(
                         milliseconds: 450,
                       ),
-                      child: const ReusbleCareForRow(price: 500, text: "Total"),
+                      child: ReusbleCareForRow(
+                          price: viewModel.doCalculation(), text: "Total"),
                     ),
                     FadeInUp(
                       duration: const Duration(milliseconds: 550),

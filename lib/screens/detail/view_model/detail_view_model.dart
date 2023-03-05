@@ -41,8 +41,8 @@ class DetailViewModel extends BaseViewModel {
           Navigator.pushNamed(context, "/cartList");
         } else {
           itemOnCart.add(data);
-          if(data.value==0){
-            data.value=1;
+          if (data.value == 0) {
+            data.value = 1;
           }
           Navigator.pushNamed(context, "/cartList");
         }
@@ -55,6 +55,8 @@ class DetailViewModel extends BaseViewModel {
     }
     notifyListeners();
   }
+
+ 
 }
 
 final detailViewModelProvider =

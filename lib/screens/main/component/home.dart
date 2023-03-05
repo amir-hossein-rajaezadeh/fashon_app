@@ -89,7 +89,7 @@ class _HomeState extends State<Home> {
                   child: Container(
                     margin: const EdgeInsets.only(top: 7),
                     width: size.width,
-                    height: size.height * 0.17,
+                    height: size.height * 0.19,
                     child: ListView.builder(
                       itemCount: categories.length,
                       physics: const BouncingScrollPhysics(),
@@ -124,7 +124,7 @@ class _HomeState extends State<Home> {
                   child: Container(
                     margin: const EdgeInsets.only(top: 10),
                     width: size.width,
-                    height: size.height * 0.49,
+                    height: size.height * 0.45,
                     child: PageView.builder(
                       controller: _controller,
                       physics: const BouncingScrollPhysics(),
@@ -155,7 +155,7 @@ class _HomeState extends State<Home> {
                   delay: const Duration(milliseconds: 750),
                   child: SizedBox(
                     width: size.width,
-                    height: size.height * 0.44,
+                    height: size.height * 0.45,
                     child: GridView.builder(
                       physics: const BouncingScrollPhysics(),
                       gridDelegate:
@@ -177,8 +177,8 @@ class _HomeState extends State<Home> {
                               Hero(
                                 tag: current.imageUrl,
                                 child: Container(
-                                  width: size.width * 0.5,
-                                  height: size.height * 0.3,
+                                  width: size.width * 0.6,
+                                  height: size.height * 0.28,
                                   margin: const EdgeInsets.all(10),
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(3),
